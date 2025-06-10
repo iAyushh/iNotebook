@@ -13,7 +13,8 @@ const NoteState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk"
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk",
         },
       });
       if (response.ok) {
@@ -34,9 +35,10 @@ const NoteState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk"
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk",
         },
-        body: JSON.stringify({ title, description, tag })
+        body: JSON.stringify({ title, description, tag }),
       });
       if (response.ok) {
         const note = await response.json();
@@ -56,11 +58,12 @@ const NoteState = (props) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk"
-        }
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk",
+        },
       });
       if (response.ok) {
-        const newNotes = notes.filter(note => note._id !== id);
+        const newNotes = notes.filter((note) => note._id !== id);
         setNotes(newNotes);
       } else {
         console.error("Failed to delete note");
@@ -77,13 +80,18 @@ const NoteState = (props) => {
         method: "PUT", // Use PUT for updates
         headers: {
           "Content-Type": "application/json",
-          "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk"
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY4MTI0OWYzYmE4ZGIyZmMyNTZkZTIwIn0sImlhdCI6MTcxOTgyODgwNH0.4Yw3Vj5BonVJCHniRALlXwmF6D9rkbwtQIFAzJiV8uk",
         },
-        body: JSON.stringify({ title, description, tag })
+        body: JSON.stringify({ title, description, tag }),
       });
       if (response.ok) {
-        const updatedNote = await response.json();
-        const newNotes = notes.map(note => note._id === id ? updatedNote : note);
+        const result = await response.json(); 
+        const updatedNote = result.note;
+
+        const newNotes = notes.map((note) =>
+          note._id === id ? updatedNote : note
+        );
         setNotes(newNotes);
       } else {
         console.error("Failed to update note");
@@ -94,7 +102,9 @@ const NoteState = (props) => {
   };
 
   return (
-    <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+    <noteContext.Provider
+      value={{ notes, addNote, deleteNote, editNote, getNotes }}
+    >
       {props.children}
     </noteContext.Provider>
   );
