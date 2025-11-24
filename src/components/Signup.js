@@ -50,6 +50,7 @@ const Signup = () => {
             id="name"
             aria-describedby="emailHelp"
             onChange={onChange}
+            value={credentials.name}
           />
         </div>
         <div className="mb-3">
@@ -61,6 +62,7 @@ const Signup = () => {
             id="email"
             aria-describedby="emailHelp"
             onChange={onChange}
+             value={credentials.email}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -75,6 +77,7 @@ const Signup = () => {
             id="password"
             onChange={onChange}
             minLength={5}
+            value={credentials.password}
             required
           />
         </div>
@@ -87,6 +90,7 @@ const Signup = () => {
             id="cpassword"
             onChange={onChange}
             minLength={5}
+             value={credentials.cpassword}
             required
           />
         </div>

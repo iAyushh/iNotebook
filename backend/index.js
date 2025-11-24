@@ -22,6 +22,5 @@ app.use('/api/notes', require('./routes/notes'));
 // Start the server
 app.listen(port, () => {
   console.log(`iNotebook listening at http://localhost:${port}`);
-  console.log("JWT_SECRET:", process.env.JWT_SECRET);
   
 });

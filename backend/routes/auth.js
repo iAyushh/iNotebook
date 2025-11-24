@@ -9,8 +9,6 @@ const fetchUser = require('../middleware/fetchUser');
 
 const jwtSecret = process.env.JWT_SECRET;
 
-// Log to check if JWT_SECRET is loaded
-console.log("JWT_SECRET:", jwtSecret);
 
 if (!jwtSecret) {
   throw new Error("JWT_SECRET is not defined in the environment variables.");
